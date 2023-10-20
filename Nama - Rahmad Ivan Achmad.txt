@@ -1,0 +1,56 @@
+UTS PEMROGRAMAN BERORIENTASI
+Nama : Rahmad Ivan Achmad
+Kelas : Reg. Pagi c
+Nim : T3121082
+
+class Pegawai:
+    def __init__(self, id_pegawai, nama, jabatan, gaji):
+        self.id_pegawai = id_pegawai
+        self.nama = nama
+        self.jabatan = jabatan
+        self.gaji = gaji
+
+    def naikkan_gaji(self, persentase):
+        self.gaji += (self.gaji * persentase / 100)
+
+class Perusahaan:
+    def __init__(self, nama_perusahaan):
+        self.nama_perusahaan = nama_perusahaan
+        self.daftar_pegawai = []
+
+    def tambah_pegawai(self, pegawai):
+        self.daftar_pegawai.append(pegawai)
+
+    def tampilkan_informasi_pegawai(self):
+        for pegawai in self.daftar_pegawai:
+            print(f"ID Pegawai: {pegawai.id_pegawai}")
+            print(f"Nama: {pegawai.nama}")
+            print(f"Jabatan: {pegawai.jabatan}")
+            print(f"Gaji: {pegawai.gaji}")
+            print()
+
+# Membuat objek perusahaan
+perusahaan_xyz = Perusahaan("PT. XYZ")
+
+# Menambahkan pegawai
+pegawai1 = Pegawai(1, "Amalia", "Manajer", 5000)
+pegawai2 = Pegawai(2, "Indah", "Programmer", 4000)
+perusahaan_xyz.tambah_pegawai(pegawai1)
+perusahaan_xyz.tambah_pegawai(pegawai2)
+
+# Menampilkan informasi pegawai sebelum kenaikan gaji
+print("Informasi Pegawai Sebelum Kenaikan Gaji:")
+perusahaan_xyz.tampilkan_informasi_pegawai()
+
+# Melakukan kenaikan gaji
+for pegawai in perusahaan_xyz.daftar_pegawai:
+    if pegawai.jabatan == "Manajer":
+        pegawai.naikkan_gaji(10)
+    elif pegawai.jabatan == "Programmer":
+        pegawai.naikkan_gaji(5)
+    elif pegawai.jabatan == "Operator":
+        pegawai.naikkan_gaji(3)
+
+# Menampilkan informasi pegawai setelah kenaikan gaji
+print("Informasi Pegawai Setelah Kenaikan Gaji:")
+perusahaan_xyz.tampilkan_informasi_pegawai()
